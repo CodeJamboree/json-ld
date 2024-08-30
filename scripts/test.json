@@ -1,0 +1,113 @@
+{
+  "@graph": [
+    {
+      "@id": "id:1",
+      "@value": "value:1",
+      "level-1": {
+        "@id": "level:1",
+        "@value": "level-1 value"
+      },
+      "custom-key": "custom value",
+      "array-0-key": [],
+      "array-1-key": [
+        {
+          "@value": "one value"
+        }
+      ],
+      "array-many-key": [
+        {
+          "@value": "value 1 of 2"
+        },
+        {
+          "@value": "value 2 of 2"
+        }
+      ],
+      "ref-key": {
+        "@id": "id:2"
+      },
+      "array-ref-1-key": [
+        {
+          "@id": "id:2"
+        }
+      ],
+      "array-ref-many-key": [
+        {
+          "@id": "id:2"
+        },
+        {
+          "@id": "id:3"
+        }
+      ],
+      "array-ref-lang-key": [
+        {
+          "@id": "id:en",
+          "@language": "en"
+        },
+        {
+          "@id": "id:fr",
+          "@language": "fr"
+        }
+      ],
+      "lang-id-key": [
+        {
+          "@id": "id-en",
+          "@value": "ID for English"
+        },
+        {
+          "@id": "id-fr",
+          "@value": "ID for French"
+        }
+      ]
+    },
+    {
+      "@id": "id:2",
+      "@value": "value of id 2"
+    },
+    {
+      "@id": "id:3",
+      "@value": "value of id 3"
+    },
+    {
+      "@id": "id:en",
+      "@value": "English Value"
+    },
+    {
+      "@id": "id:fr",
+      "@value": "French Value"
+    },
+    {
+      "@id": "id-en",
+      "@value": "English-Value"
+    },
+    {
+      "@id": "id-fr",
+      "@value": "French-Value"
+    },
+    {
+      "@id": "level:1",
+      "@value": "value of level:1",
+      "level-2": {
+        "@id": "level:2",
+        "@value": "value of level-2"
+      }
+    },
+    {
+      "@id": "level:2",
+      "@value": "value of level:2",
+      "level-3": [
+        {
+          "@language": "en",
+          "@value": "Level 3 English-1"
+        },
+        {
+          "@language": "en",
+          "@value": "Level 3 English-2"
+        },
+        {
+          "@language": "fr",
+          "@value": "Level 3 French"
+        }
+      ]
+    }
+  ]
+}

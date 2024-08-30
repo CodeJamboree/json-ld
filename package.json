@@ -1,0 +1,12 @@
+{
+  "name": "@codejamboree/json-ld",
+  "version": "1.0.0",
+  "description": "Read JSON-LD (Linked Data)",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node ./scripts/test.js"
+  },
+  "author": "Code Jamboree LLC",
+  "license": "MIT"
+}
