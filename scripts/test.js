@@ -37,7 +37,9 @@ const main = () => {
     getDeeplyReferencedValue1,
     getDeeplyReferencedValue2,
     getDeeplyReferencedValue3,
-    getExcessCache
+    getExcessCache,
+    getUnresolvedId,
+    getUnresolvedRow
   ].reduce(runNextTest, state);
   if (state.failed > 0) {
     console.error(`${state.failed} of ${state.total} tests failed.`);
@@ -147,6 +149,15 @@ const getExcessCache = () => {
     let value = jsonld.getValue(`cache:${i}`);
     expectEqual(value, `Value ${i}`);
   }
+}
+
+const getUnresolvedId = () => {
+  let value = jsonld.getValue('id:2', 'unresolved', '@id');
+  expectEqual(value, 'unresolved:id');
+}
+const getUnresolvedRow = () => {
+  let value = jsonld.getValue('id:2', 'unresolved');
+  expectEqual(value, { '@id': 'unresolved:id' });
 }
 
 

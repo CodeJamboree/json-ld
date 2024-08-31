@@ -41,11 +41,13 @@
       "array-ref-lang-key": [
         {
           "@id": "id:en",
-          "@language": "en"
+          "@language": "en",
+          "@value": "Value Ref(en)"
         },
         {
           "@id": "id:fr",
-          "@language": "fr"
+          "@language": "fr",
+          "@value": "Value Ref(fr)"
         }
       ],
       "lang-id-key": [
@@ -61,7 +63,10 @@
     },
     {
       "@id": "id:2",
-      "@value": "value of id 2"
+      "@value": "value of id 2",
+      "unresolved": {
+        "@id": "unresolved:id"
+      }
     },
     {
       "@id": "id:3",
