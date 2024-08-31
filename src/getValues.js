@@ -45,7 +45,9 @@ const resolveValue = (table, fullStack, language) => value => {
       if (remainingStack.length !== 0) {
         return getValues(table, nextValue, remainingStack, language);
       }
-      if (valueKey in nextValue) return nextValue[valueKey];
+      if (isObject(nextValue) && (valueKey in nextValue)) {
+        return nextValue[valueKey];
+      }
       return nextValue;
     }
     if (idKey in value) {
@@ -55,7 +57,9 @@ const resolveValue = (table, fullStack, language) => value => {
       if (fullStack.length !== 0) {
         return getValues(table, nextValue, fullStack, language);
       }
-      if (valueKey in nextValue) return nextValue[valueKey];
+      if (isObject(nextValue) && (valueKey in nextValue)) {
+        return nextValue[valueKey];
+      }
       return nextValue;
     }
     if (valueKey in value) {
