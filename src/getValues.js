@@ -39,30 +39,32 @@ const resolve = (table, values, fullStack, language) => {
 }
 const resolveValue = (table, fullStack, language) => value => {
   const [key, ...remainingStack] = fullStack;
-  if (key in value) {
-    const nextValue = value[key];
-    if (remainingStack.length !== 0) {
-      return getValues(table, nextValue, remainingStack, language);
+  if (isObject(value)) {
+    if (key in value) {
+      const nextValue = value[key];
+      if (remainingStack.length !== 0) {
+        return getValues(table, nextValue, remainingStack, language);
+      }
+      if (valueKey in nextValue) return nextValue[valueKey];
+      return nextValue;
     }
-    if (valueKey in nextValue) return nextValue[valueKey];
-    return nextValue;
-  }
-  if (idKey in value) {
-    const id = value[idKey];
-    if (!table.has(id)) return;
-    const nextValue = table.get(id);
-    if (fullStack.length !== 0) {
-      return getValues(table, nextValue, fullStack, language);
+    if (idKey in value) {
+      const id = value[idKey];
+      if (!table.has(id)) return;
+      const nextValue = table.get(id);
+      if (fullStack.length !== 0) {
+        return getValues(table, nextValue, fullStack, language);
+      }
+      if (valueKey in nextValue) return nextValue[valueKey];
+      return nextValue;
     }
-    if (valueKey in nextValue) return nextValue[valueKey];
-    return nextValue;
-  }
-  if (valueKey in value) {
-    const nextValue = value[valueKey];
-    if (fullStack.length !== 0) {
-      return getValues(table, nextValue, fullStack, language);
+    if (valueKey in value) {
+      const nextValue = value[valueKey];
+      if (fullStack.length !== 0) {
+        return getValues(table, nextValue, fullStack, language);
+      }
+      return nextValue;
     }
-    return nextValue;
   }
   if (fullStack.length === 0) {
     return value;
