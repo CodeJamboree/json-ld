@@ -1,6 +1,6 @@
 {
   "name": "@codejamboree/json-ld",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Read JSON-LD (Linked Data)",
   "main": "src/index.js",
   "type": "module",
