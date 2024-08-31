@@ -2,11 +2,15 @@ import JsonLD from "../src/index.js";
 import fs from 'fs';
 
 let jsonld;
+const cacheLimit = 100;
 
 const main = () => {
 
   const json = fs.readFileSync('scripts/test.json', 'utf8');
   const data = JSON.parse(json);
+  for (let i = 0; i < cacheLimit + 1; i++) {
+    data['@graph'].push({ '@id': `cache:${i}`, '@value': `Value ${i}` });
+  }
   jsonld = new JsonLD(data, 'en');
 
   const state = {
@@ -32,7 +36,8 @@ const main = () => {
     getValueByRefUnknownLanguageId,
     getDeeplyReferencedValue1,
     getDeeplyReferencedValue2,
-    getDeeplyReferencedValue3
+    getDeeplyReferencedValue3,
+    getExcessCache
   ].reduce(runNextTest, state);
   if (state.failed > 0) {
     console.error(`${state.failed} of ${state.total} tests failed.`);
@@ -137,6 +142,14 @@ const getDeeplyReferencedValue3 = () => {
   expectEqual(value, ["Level 3 English-1", "Level 3 English-2"]);
 }
 
+const getExcessCache = () => {
+  for (let i = 0; i < cacheLimit + 1; i++) {
+    let value = jsonld.getValue(`cache:${i}`);
+    expectEqual(value, `Value ${i}`);
+  }
+}
+
+
 const expectEqual = (actualValue, expectedValue) => {
   const actual = JSON.stringify(actualValue);
   const expected = JSON.stringify(expectedValue);
@@ -145,7 +158,6 @@ const expectEqual = (actualValue, expectedValue) => {
     throw `${actual} is not equal to ${expected}`;
   };
 }
-
 try {
   main();
   console.info('done');

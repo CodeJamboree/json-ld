@@ -27,13 +27,13 @@ export class CacheById {
     const { queue, byId, limit } = this;
     prependOrBringToFront(queue, id);
     byId.set(id, value);
-    queue.splice(limit).forEach(byId.delete);
+    queue.splice(limit).forEach(id => byId.delete(id));
   }
   delete = id => {
     const { queue, byId } = this;
     if (!byId.has(id)) return;
     queue.splice(queue.indexOf(id), 1)
-      .forEach(byId.delete)
+      .forEach(id => byId.delete(id))
   }
   clear = () => {
     this.byId.clear();
